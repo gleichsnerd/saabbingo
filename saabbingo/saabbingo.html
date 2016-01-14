@@ -1,0 +1,73 @@
+<head>
+  <title>Oldham Bingo</title>
+</head>
+
+<body>
+  {{> homepage }}
+</body>
+<template name="homepage">
+  <h1>Let's Play Some Bingo!</h1>
+  {{#if not_signed_in}}
+    {{> signin}}
+  {{else}}
+    <div id="bingo-board-container">
+    {{> board}}
+    </div>
+    <div id="right-column">
+      {{#if winner}}
+        {{winner.username}} has won!
+        <div id="new-game-button">Play Again?</div>
+      {{/if}}
+      {{> chat}}
+      {{> scoreboard}}
+    </div>
+  {{/if}}
+</template>
+<template name="scoreboard">
+  <div id="scoreboard-container">
+    <h2>Current Players:</h2>
+    <ul>
+      {{#each players}}
+      <li>{{this.username}}<span class="num_squares">{{this.num_squares}} ({{this.num_bingo}} needed)</span></li>
+      {{/each}}
+    </ul>
+  </div>
+</template>
+<template name="chat">
+  <div id="scoreboard-container">
+    <h2>Chat:</h2>
+    <form action='#'>
+      <input type='text' id='chat_message' />
+      <input type='submit' value='>' id='chat_message_submit'/>
+    </form>
+    <ul>
+    {{#each messages}}
+    <li><b>{{this.user}}</b>: {{this.msg}}</li>
+    {{/each}}
+    </ul>
+  </div>
+</template>
+<template name="winner">
+</template>
+<template name="signin">
+  <div id="signin-container">
+    <form id="signin_form">
+      Your Name:
+      <input id="signin_username" type="text" />
+      <input id="signin_button" type="submit" value="Achieve Compilers Nirvana" />
+    </form>
+  </div>
+</template>
+<template name="board">
+  <table id="bingo-board">
+    <tbody>
+      {{#each rows}}
+      <tr>
+        {{#each cols}}
+        <!-- <td id="{{id}}" {{#if acquired}} class="acquired" {{/if}}>{{text}}</td> -->
+        {{/each}}
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</template>
