@@ -1,5 +1,5 @@
 <head>
-  <title>Oldham Bingo</title>
+  <title>Saab Bingo</title>
 </head>
 
 <body>
@@ -64,7 +64,7 @@
       {{#each rows}}
       <tr>
         {{#each cols}}
-        <!-- <td id="{{id}}" {{#if acquired}} class="acquired" {{/if}}>{{text}}</td> -->
+          <td id="{{id}}" class="{{#if acquired}}acquired{{/if}}">{{text}}</td>
         {{/each}}
       </tr>
       {{/each}}
